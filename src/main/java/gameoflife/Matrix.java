@@ -23,8 +23,27 @@ public class Matrix {
     }
 
 
-    public int getLivingNeighbours() {
+    public int getLivingNeighbours(int row, int column) {
 
-        return 1;
+        int livingNeighbours = 0;
+
+        int[][] gridToSearch = {{row-1, column-1}, {row-1, column}, {row-1, column+1},
+                                {row, column-1}, /*this one*/       {row, column+1},
+                                {row+1, column-1}, {row+1, column}, {row+1, column+1}};
+
+        for(int[] cells : gridToSearch) {
+
+            int checkRow = cells[0];
+            int checkColumn = cells[1];
+
+            if(checkRow >= 0 && checkRow < rows && checkColumn >= 0 && checkColumn < columns && matrix[checkRow][checkColumn] == ALIVE)
+                livingNeighbours++;
+        }
+        return livingNeighbours;
+    }
+
+    public void setLivingCell(int row, int column) {
+
+        matrix[row][column] = ALIVE;
     }
 }

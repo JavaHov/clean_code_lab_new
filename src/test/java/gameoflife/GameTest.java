@@ -8,8 +8,13 @@ public class GameTest {
     @Test
     public void foundOneLivingCellInMatrix() {
 
-        Matrix matrix = new Matrix();
+        Matrix matrix = new Matrix(8, 8);
         int livingNeighbours = matrix.getLivingNeighbours();
         assertThat(livingNeighbours).isEqualTo(1);
+    }
+
+    @Test
+    public void foundNoLivingCellInMatrix() {
+
     }
 }

@@ -5,10 +5,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameTest {
 
+    private Matrix matrix = new Matrix(8, 8);
+
     @Test
     public void foundOneLivingNeighbourInMatrix() {
 
-        Matrix matrix = new Matrix(8, 8);
         matrix.setLivingCell(2, 1);
         int livingNeighbours = matrix.getLivingNeighbours(2, 2);
         assertThat(livingNeighbours).isEqualTo(1);
@@ -17,7 +18,6 @@ public class GameTest {
     @Test
     public void foundNoLivingNeighbourInMatrix() {
 
-        Matrix matrix = new Matrix(8, 8);
         matrix.setLivingCell(5, 5);
         int livingNeighbours = matrix.getLivingNeighbours(3, 3);
         assertThat(livingNeighbours).isEqualTo(0);
@@ -26,7 +26,6 @@ public class GameTest {
     @Test
     public void foundThreeLivingNeighboursInMatrix() {
 
-        Matrix matrix = new Matrix(6, 6);
         matrix.setLivingCell(0, 0);
         matrix.setLivingCell(0, 1);
         matrix.setLivingCell(1, 0);
@@ -37,7 +36,6 @@ public class GameTest {
     @Test
     public void foundEightLivingNeighboursInMatrix() {
 
-        Matrix matrix = new Matrix(6, 6);
         matrix.setLivingCell(1, 2);
         matrix.setLivingCell(1, 3);
         matrix.setLivingCell(1, 4);
@@ -48,5 +46,11 @@ public class GameTest {
         matrix.setLivingCell(3, 4);
         int livingNeighbours = matrix.getLivingNeighbours(2, 3);
         assertThat(livingNeighbours).isEqualTo(8);
+    }
+
+    @Test
+    public void aCellWithLessThanTwoLivingNeighboursDies() {
+
+
     }
 }

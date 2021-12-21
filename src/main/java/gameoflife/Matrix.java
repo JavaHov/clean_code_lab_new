@@ -56,11 +56,11 @@ public class Matrix {
 
                 if(aliveWithLessThanTwoLivingNeighbours(y,x))
                     nextGeneration[y][x] = DEAD;
-                else if(isAlive(y,x) && (getLivingNeighbours(y,x) == 2 || getLivingNeighbours(y,x) == 3))
+                else if(aliveWithTwoOrThreeLivingNeighbours(y,x))
                     nextGeneration[y][x] = ALIVE;
-                else if(isDead(y,x) && getLivingNeighbours(y,x) == 3)
+                else if(deadWithExactlyThreeLivingNeighbours(y,x))
                     nextGeneration[y][x] = ALIVE;
-                else if(isAlive(y,x) && getLivingNeighbours(y,x) > 3)
+                else if(aliveWithMoreThanThreeLivingNeighbours(y,x))
                     nextGeneration[y][x] = DEAD;
                 else
                     nextGeneration[y][x] = matrix[y][x];
@@ -85,5 +85,17 @@ public class Matrix {
 
     private boolean aliveWithLessThanTwoLivingNeighbours(int y, int x) {
         return isAlive(y,x) && getLivingNeighbours(y,x) < 2;
+    }
+
+    private boolean aliveWithTwoOrThreeLivingNeighbours(int y, int x) {
+        return isAlive(y,x) && (getLivingNeighbours(y,x) == 2 || getLivingNeighbours(y,x) == 3);
+    }
+
+    private boolean deadWithExactlyThreeLivingNeighbours(int y, int x) {
+        return isDead(y,x) && getLivingNeighbours(y,x) == 3;
+    }
+
+    private boolean aliveWithMoreThanThreeLivingNeighbours(int y, int x) {
+        return isAlive(y,x) && getLivingNeighbours(y,x) > 3;
     }
 }

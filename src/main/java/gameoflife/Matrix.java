@@ -36,7 +36,7 @@ public class Matrix {
             int checkRow = cells[0];
             int checkColumn = cells[1];
 
-            if(checkRow >= 0 && checkRow < rows && checkColumn >= 0 && checkColumn < columns && matrix[checkRow][checkColumn] == ALIVE)
+            if(checkRow >= 0 && checkRow < rows && checkColumn >= 0 && checkColumn < columns && isAlive(checkRow,checkColumn))
                 livingNeighbours++;
         }
         return livingNeighbours;

@@ -46,4 +46,32 @@ public class Matrix {
 
         matrix[row][column] = ALIVE;
     }
+
+    public void buildNextGenMatrix() {
+
+        int[][] nextGeneration = new int[rows][columns];
+
+        for(int y = 0; y < rows; y++) {
+            for(int x = 0; x < columns; x++) {
+
+                if(isAlive(y,x) && getLivingNeighbours(y,x) < 2)
+                    nextGeneration[y][x] = DEAD;
+                else if(isAlive(y,x) && (getLivingNeighbours(y,x) == 2 || getLivingNeighbours(y,x) == 3))
+                    nextGeneration[y][x] = ALIVE;
+                else
+                    nextGeneration[y][x] = matrix[y][x];
+            }
+
+
+        }
+        matrix = nextGeneration.clone();
+    }
+
+    public boolean isAlive(int y, int x) {
+        return matrix[y][x] == ALIVE;
+    }
+
+    public boolean isDead(int y, int x) {
+        return matrix[y][x] == DEAD;
+    }
 }

@@ -51,6 +51,23 @@ public class GameTest {
     @Test
     public void aCellWithLessThanTwoLivingNeighboursDies() {
 
+        matrix.setLivingCell(1, 2);
+        matrix.setLivingCell(1, 3);
 
+        matrix.buildNextGenMatrix();
+
+        assertThat(matrix.isDead(1, 2)).isTrue();
+    }
+
+    @Test
+    public void aCellWithTwoOrThreeLivingNeighboursLives() {
+
+        matrix.setLivingCell(1, 2);
+        matrix.setLivingCell(1, 3);
+        matrix.setLivingCell(2, 3);
+
+        matrix.buildNextGenMatrix();
+
+        assertThat(matrix.isAlive(1, 2)).isTrue();
     }
 }

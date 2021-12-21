@@ -3,8 +3,8 @@ package gameoflife;
 public class Matrix {
 
 
-    private int rows;
-    private int columns;
+    private final int rows;
+    private final int columns;
     //private boolean STATE = false;
     private final static int DEAD = 0;
     private final static int ALIVE = 1;

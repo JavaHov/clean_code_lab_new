@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GameTest {
 
-    private Matrix matrix = new Matrix(8, 8);
+    private final Matrix matrix = new Matrix(8, 8);
 
     @Test
     public void foundOneLivingNeighbourInMatrix() {

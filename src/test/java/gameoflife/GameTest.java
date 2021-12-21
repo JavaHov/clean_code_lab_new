@@ -84,5 +84,39 @@ public class GameTest {
     }
 
     @Test
-    public void
+    public void aCellWithMoreThanThreeLivingNeighboursDies() {
+
+        matrix.setLivingCell(0, 0);
+        matrix.setLivingCell(0, 1);
+        matrix.setLivingCell(0, 2);
+        matrix.setLivingCell(1, 0);
+        matrix.setLivingCell(1, 1);
+
+        matrix.buildNextGenMatrix();
+
+        assertThat(matrix.isDead(1, 1)).isTrue();
+
+    }
+
+    @Test
+    public void threeLivingNeighboursUpperLeftCorner() {
+
+        matrix.setLivingCell(0,1);
+        matrix.setLivingCell(1,0);
+        matrix.setLivingCell(1,1);
+
+        int livingNeighbours = matrix.getLivingNeighbours(0,0);
+        assertThat(livingNeighbours).isEqualTo(3);
+    }
+
+    @Test
+    public void threeLivingNeighboursBottomRight() {
+
+        matrix.setLivingCell(6,6);
+        matrix.setLivingCell(6,7);
+        matrix.setLivingCell(7,6);
+
+        int livingNeighbours = matrix.getLivingNeighbours(7,7);
+        assertThat(livingNeighbours).isEqualTo(3);
+    }
 }

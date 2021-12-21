@@ -60,6 +60,8 @@ public class Matrix {
                     nextGeneration[y][x] = ALIVE;
                 else if(isDead(y,x) && getLivingNeighbours(y,x) == 3)
                     nextGeneration[y][x] = ALIVE;
+                else if(isAlive(y,x) && getLivingNeighbours(y,x) > 3)
+                    nextGeneration[y][x] = DEAD;
                 else
                     nextGeneration[y][x] = matrix[y][x];
             }

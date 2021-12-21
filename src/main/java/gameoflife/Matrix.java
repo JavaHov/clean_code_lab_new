@@ -42,10 +42,6 @@ public class Matrix {
         return livingNeighbours;
     }
 
-    private boolean isWithinMatrix(int row, int column) {
-        return row >= 0 && row < rows && column >= 0 && column < columns;
-    }
-
     public void setLivingCell(int row, int column) {
 
         matrix[row][column] = ALIVE;
@@ -58,7 +54,7 @@ public class Matrix {
         for(int y = 0; y < rows; y++) {
             for(int x = 0; x < columns; x++) {
 
-                if(isAlive(y,x) && getLivingNeighbours(y,x) < 2)
+                if(aliveWithLessThanTwoLivingNeighbours(y,x))
                     nextGeneration[y][x] = DEAD;
                 else if(isAlive(y,x) && (getLivingNeighbours(y,x) == 2 || getLivingNeighbours(y,x) == 3))
                     nextGeneration[y][x] = ALIVE;
@@ -81,5 +77,13 @@ public class Matrix {
 
     public boolean isDead(int y, int x) {
         return matrix[y][x] == DEAD;
+    }
+
+    private boolean isWithinMatrix(int row, int column) {
+        return row >= 0 && row < rows && column >= 0 && column < columns;
+    }
+
+    private boolean aliveWithLessThanTwoLivingNeighbours(int y, int x) {
+        return isAlive(y,x) && getLivingNeighbours(y,x) < 2;
     }
 }

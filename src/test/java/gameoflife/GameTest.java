@@ -74,11 +74,17 @@ public class GameTest {
     @Test
     public void aDeadCellWithExactlyThreeLivingNeighboursStartsLiving() {
 
+        matrix.print();
+
         matrix.setLivingCell(1, 2);
         matrix.setLivingCell(1, 3);
         matrix.setLivingCell(2, 3);
 
+        matrix.print();
+
         matrix.buildNextGenMatrix();
+
+        matrix.print();
 
         assertThat(matrix.isAlive(2, 2)).isTrue();
     }

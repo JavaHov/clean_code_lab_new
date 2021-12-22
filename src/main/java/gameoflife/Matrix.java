@@ -2,10 +2,8 @@ package gameoflife;
 
 public class Matrix {
 
-
     private final int rows;
     private final int columns;
-    //private boolean STATE = false;
     private final static int DEAD = 0;
     private final static int ALIVE = 1;
     private int[][] matrix;
@@ -22,17 +20,12 @@ public class Matrix {
         }
     }
 
-
     public int getLivingNeighbours(int row, int column) {
 
         int livingNeighbours = 0;
-
-        int[][] gridToSearch = {{row-1, column-1}, {row-1, column}, {row-1, column+1},
-                                {row, column-1}, /*this one*/       {row, column+1},
-                                {row+1, column-1}, {row+1, column}, {row+1, column+1}};
+        int[][] gridToSearch = getSearchGrid(row, column);
 
         for(int[] cells : gridToSearch) {
-
             int checkRow = cells[0];
             int checkColumn = cells[1];
 
@@ -43,7 +36,6 @@ public class Matrix {
     }
 
     public void setLivingCell(int row, int column) {
-
         matrix[row][column] = ALIVE;
     }
 
@@ -65,8 +57,6 @@ public class Matrix {
                 else
                     nextGeneration[y][x] = matrix[y][x];
             }
-
-
         }
         matrix = nextGeneration.clone();
     }
@@ -97,5 +87,28 @@ public class Matrix {
 
     private boolean aliveWithMoreThanThreeLivingNeighbours(int y, int x) {
         return isAlive(y,x) && getLivingNeighbours(y,x) > 3;
+    }
+
+    private int[][] getSearchGrid(int row, int column) {
+
+        int[][] grid = {{row - 1, column - 1}, {row - 1, column}, {row - 1, column + 1},
+                         {row, column - 1},   /* den här  */       {row, column + 1},
+                         {row + 1, column - 1}, {row + 1, column}, {row + 1, column + 1}};
+        return grid;
+    }
+
+    public void print() {
+        for(int[] columns : matrix) {
+            for(int i = 0; i < columns.length; i++) {
+                if(columns[i] == DEAD) {
+                    System.out.print("x  ");
+                }
+                else {
+                    System.out.print("O  ");
+                }
+            }
+            System.out.println();
+        }
+        System.out.println("--------------------------------");
     }
 }

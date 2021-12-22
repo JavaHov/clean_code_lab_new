@@ -42,10 +42,13 @@ public class Matrix {
     public void buildNextGenMatrix() {
 
         int[][] nextGeneration = new int[rows][columns];
+        updateLivingConditions(nextGeneration);
+        matrix = nextGeneration.clone();
+    }
 
+    private void updateLivingConditions(int[][] nextGeneration) {
         for(int y = 0; y < rows; y++) {
             for(int x = 0; x < columns; x++) {
-
                 if(aliveWithLessThanTwoLivingNeighbours(y,x))
                     nextGeneration[y][x] = DEAD;
                 else if(aliveWithTwoOrThreeLivingNeighbours(y,x))
@@ -58,7 +61,6 @@ public class Matrix {
                     nextGeneration[y][x] = matrix[y][x];
             }
         }
-        matrix = nextGeneration.clone();
     }
 
     public boolean isAlive(int y, int x) {

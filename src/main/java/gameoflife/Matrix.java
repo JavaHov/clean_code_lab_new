@@ -92,19 +92,19 @@ public class Matrix {
     private int[][] getSearchGrid(int row, int column) {
 
         int[][] grid = {{row - 1, column - 1}, {row - 1, column}, {row - 1, column + 1},
-                         {row, column - 1},   /* den här  */       {row, column + 1},
-                         {row + 1, column - 1}, {row + 1, column}, {row + 1, column + 1}};
+                        {row, column - 1},   /* den här  */       {row, column + 1},
+                        {row + 1, column - 1}, {row + 1, column}, {row + 1, column + 1}};
         return grid;
     }
 
     public void print() {
         for(int[] columns : matrix) {
-            for(int i = 0; i < columns.length; i++) {
-                if(columns[i] == DEAD) {
+            for(int cell : columns) {
+                if(cell == DEAD) {
                     System.out.print("x  ");
                 }
                 else {
-                    System.out.print("O  ");
+                    System.out.print("0  ");
                 }
             }
             System.out.println();

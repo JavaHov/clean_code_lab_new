@@ -23,7 +23,7 @@ public class Matrix {
     public int getLivingNeighbours(int row, int column) {
 
         int livingNeighbours = 0;
-        int[][] gridToSearch = getSearchGrid(row, column);
+        int[][] gridToSearch = createSearchGrid(row, column);
 
         for(int[] cells : gridToSearch) {
             int checkRow = cells[0];
@@ -91,7 +91,7 @@ public class Matrix {
         return isAlive(y,x) && getLivingNeighbours(y,x) > 3;
     }
 
-    private int[][] getSearchGrid(int row, int column) {
+    private int[][] createSearchGrid(int row, int column) {
 
         int[][] grid = {{row - 1, column - 1}, {row - 1, column}, {row - 1, column + 1},
                         {row, column - 1},   /* den här  */       {row, column + 1},

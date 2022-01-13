@@ -4,18 +4,18 @@ public class Matrix {
 
     private final int rows;
     private final int columns;
-    private final static int DEAD = 0;
-    private final static int ALIVE = 1;
-    private int[][] matrix;
+    private static final  int DEAD = 0;
+    private static final int ALIVE = 1;
+    private int[][] gameboard;
 
     public Matrix(int rows, int columns) {
         this.rows = rows;
         this.columns = columns;
-        matrix = new int[rows][columns];
+        gameboard = new int[rows][columns];
 
         for(int y  = 0; y < rows; y++) {
             for(int x = 0; x < columns; x++) {
-                matrix[y][x] = DEAD;
+                gameboard[y][x] = DEAD;
             }
         }
     }
@@ -36,14 +36,14 @@ public class Matrix {
     }
 
     public void setLivingCell(int row, int column) {
-        matrix[row][column] = ALIVE;
+        gameboard[row][column] = ALIVE;
     }
 
     public void buildNextGenMatrix() {
 
         int[][] nextGeneration = new int[rows][columns];
         updateLivingConditions(nextGeneration);
-        matrix = nextGeneration.clone();
+        gameboard = nextGeneration.clone();
     }
 
     private void updateLivingConditions(int[][] nextGeneration) {
@@ -58,17 +58,17 @@ public class Matrix {
                 else if(aliveWithMoreThanThreeLivingNeighbours(y,x))
                     nextGeneration[y][x] = DEAD;
                 else
-                    nextGeneration[y][x] = matrix[y][x];
+                    nextGeneration[y][x] = gameboard[y][x];
             }
         }
     }
 
     public boolean isAlive(int y, int x) {
-        return matrix[y][x] == ALIVE;
+        return gameboard[y][x] == ALIVE;
     }
 
     public boolean isDead(int y, int x) {
-        return matrix[y][x] == DEAD;
+        return gameboard[y][x] == DEAD;
     }
 
     private boolean isWithinMatrix(int row, int column) {
@@ -94,13 +94,13 @@ public class Matrix {
     private int[][] createSearchGrid(int row, int column) {
 
         int[][] grid = {{row - 1, column - 1}, {row - 1, column}, {row - 1, column + 1},
-                        {row, column - 1},   /* den här  */       {row, column + 1},
-                        {row + 1, column - 1}, {row + 1, column}, {row + 1, column + 1}};
+                {row, column - 1},   /* den här  */       {row, column + 1},
+                {row + 1, column - 1}, {row + 1, column}, {row + 1, column + 1}};
         return grid;
     }
 
     public void print() {
-        for(int[] columns : matrix) {
+        for(int[] columns : gameboard) {
             for(int cell : columns) {
                 if(cell == DEAD) {
                     System.out.print("x  ");
